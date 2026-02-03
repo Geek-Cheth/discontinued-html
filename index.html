@@ -1,26 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Discontinued</title>
+    <title>Service Discontinued</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="message-box">
-            <h1>System Discontinued</h1>
-            <p class="main-message">This free system has been discontinued due to prolonged inactivity.</p>
-<p class="sub-message">As we provide this system at no cost, we cannot justify maintaining resources for systems that show <span class="highlight-text">no active usage</span>. We appreciate your understanding in this matter.</p>
+            <div class="icon-container">
+                <svg class="discontinued-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+            </div>
+            <h1 id="title">Service Discontinued</h1>
+            <p class="main-message" id="mainMessage">This service has been discontinued.</p>
+            <p class="sub-message" id="subMessage">This service is <span class="highlight-text">no longer
+                    available</span>. We appreciate your past support and understanding. If you believe this
+                discontinuation was made in error or have any questions, please don't hesitate to reach out.</p>
+
+            <div class="reason-box" id="reasonBox" style="display: none;">
+                <h3>Reason for Discontinuation</h3>
+                <p id="reason"></p>
+            </div>
+
             <div class="action-section">
-                <p>To reactivate this system, please send an email to:</p>
-                <a href="mailto:lgrandiduchethina@gmail.com" class="email-link">lgrandiduchethina@gmail.com</a>
+                <p>To inquire about reactivation, please contact:</p>
+                <a href="mailto:lgrandiduchethina@gmail.com" class="email-link"
+                    id="emailLink">lgrandiduchethina@gmail.com</a>
             </div>
         </div>
         <footer>
-<p>©2019 - 2025 Geek-Cheth Creation | <a href="https://github.com/geek-cheth" target="_blank" class="github-link"><svg height="20" viewBox="0 0 16 16" width="20" class="github-icon"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a></p>
-<p class="system-note">Automated Human Resource Management System</p>
+            <p>©2019 - 2026 Geek-Cheth Creation | <a href="https://github.com/geek-cheth" target="_blank"
+                    class="github-link"><svg height="20" viewBox="0 0 16 16" width="20" class="github-icon">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg></a></p>
+            <p class="system-note" id="systemNote">Discontinued Service</p>
         </footer>
     </div>
+
+    <script>
+        // Parse URL parameters to customize the page
+        const params = new URLSearchParams(window.location.search);
+
+        // Get parameters with defaults
+        const projectName = params.get('name') || params.get('project');
+        const reason = params.get('reason');
+        const email = params.get('email') || 'lgrandiduchethina@gmail.com';
+        const customMessage = params.get('message');
+
+        // Update page based on parameters
+        if (projectName) {
+            document.getElementById('title').textContent = projectName + ' - Discontinued';
+            document.title = projectName + ' - Discontinued';
+            document.getElementById('mainMessage').textContent = `${projectName} has been discontinued.`;
+            document.getElementById('systemNote').textContent = projectName;
+        }
+
+        if (reason) {
+            const reasonBox = document.getElementById('reasonBox');
+            reasonBox.style.display = 'block';
+            document.getElementById('reason').textContent = reason;
+        }
+
+        if (customMessage) {
+            document.getElementById('subMessage').innerHTML = customMessage;
+        }
+
+        // Update email
+        const emailLink = document.getElementById('emailLink');
+        emailLink.href = 'mailto:' + email;
+        emailLink.textContent = email;
+    </script>
 </body>
+
 </html>
